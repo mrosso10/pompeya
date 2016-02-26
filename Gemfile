@@ -1,7 +1,32 @@
 source 'https://rubygems.org'
 
+gem 'pg'
 gem 'slim-rails'
 gem 'puma'
+gem 'twitter-bootstrap-rails'
+gem 'font-awesome-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'rails_admin'
+gem "rails_admin_pundit", github: "sudosu/rails_admin_pundit"
+gem 'devise'
+gem 'devise-async'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'devise_invitable'
+gem 'pundit'
+gem 'draper'
+gem 'rollbar', '~> 2.4.0'
+gem 'audited-activerecord', '~> 4.0'
+gem 'momentjs-rails'
+gem 'spinjs-rails'
+
+
+
+# For Heroku
+gem 'rails_12factor', group: :production
+
+
+
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
@@ -14,7 +39,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,12 +59,22 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem 'rspec-rails'
+end
+
 group :development, :test do
+  gem 'awesome_print'
+  gem 'pry-rails'
+  gem 'rubocop'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 end
 
 group :development do
+  gem 'bullet'
+  gem 'better_errors'
+  gem 'letter_opener'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
