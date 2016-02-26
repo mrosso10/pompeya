@@ -1,9 +1,47 @@
 doctype html
-html manifest='application.manifest'
+html lang="en"
   head
-    title Peluqueando
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Peluqueando"
     = csrf_meta_tags
+    = stylesheet_link_tag "application", :media => "all"
+    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
+    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
+    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
+    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
+    / = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
+    = javascript_include_tag "application"
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
+
+
   body
-    = yield
+    = nav_bar static: :top, brand: "Fashionable Clicheizr 2.0", responsive: true do
+      = menu_group do
+        = menu_item "Home", root_path(a: 1)
+        = menu_divider
+        = drop_down "Products" do
+          = menu_item "Things you can't afford", root_path(a: 1)
+          = menu_item "Things that won't suit you anyway", root_path(a: 1)
+          = menu_item "Things you're not even cool enough to buy anyway", root_path(a: 1)
+        = menu_item "About Us", root_path(a: 1)
+        = menu_item "Contact", root_path(a: 1)
+      = menu_group pull: :right do
+        - if true
+          = menu_item "Log Out", root_path(a: 1)
+        - else
+          = form_for @user, url: root_path(:user), html: {class: "navbar-form pull-right"} do |f|
+            p= f.text_field :email
+            p= f.password_field :password
+            p= f.submit "Sign in"
+
+
+    .container
+      = bootstrap_flash
+      = yield
+
+      footer
+        p &copy; Company 2016
