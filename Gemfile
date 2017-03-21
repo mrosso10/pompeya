@@ -26,6 +26,11 @@ gem 'spinjs-rails'
 # For Heroku
 gem 'rails_12factor', group: :production
 
+gem 'bundler', '>= 1.8.4'
+source 'https://rails-assets.org' do
+  # gem 'rails-assets-bootstrap'
+  gem 'rails-assets-angular'
+end
 
 
 

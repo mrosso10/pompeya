@@ -15,4 +15,8 @@
 //= require metisMenu/jquery.metisMenu.js
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
+//= require angular
 //= require_tree .
+
+receta = angular.module('receta',[
+])
