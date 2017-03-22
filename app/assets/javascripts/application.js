@@ -24,7 +24,6 @@ receta.controller('myCtrl' , function($scope) {
 
 
     // Todos los productos, teoricamente vendrían de la base
-
     $scope.all_products = [{
         id:1,
         name: "Producto1",
@@ -65,7 +64,8 @@ receta.controller('myCtrl' , function($scope) {
     }];
 
 
-    $scope.addContenedor = function ($scope) {
+    $scope.addContenedor = function () {
+        debugger;
         console.log("asd");
         var i = {name: "Nuevo Contenedor", editing: false};
         $scope.contenedores.push(i);

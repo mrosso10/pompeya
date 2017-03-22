@@ -1,0 +1,10 @@
+.container-info
+  span
+    button ng-click="add_child(contenedor)" Add
+  span
+    span ng-hide="contenedor.editing" ng-dblclick="editContenedor(contenedor)" {{contenedor.name}}
+    input ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""
+.container-children
+  .child ng-repeat="contenedor in contenedor.children"
+    .contenedor ng-include="'contenedor'"
+

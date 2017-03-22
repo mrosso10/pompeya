@@ -1,0 +1,6 @@
+.wrapper.wrapper-content.animated.fadeInRight ng-app="presupuestador"
+  .row
+    .col-lg-12
+      .row ng-controller="PresupuestadorCtrl"
+        div ng-repeat="contenedor in contenedores"
+          .contenedor ng-include="'contenedor'"
