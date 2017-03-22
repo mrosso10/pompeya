@@ -3,6 +3,7 @@
     button ng-click="add_child(contenedor)" C
     button ng-click="add_product(contenedor)" P
     button ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)" {{ contenedor.collapse ? '+' : '-' }}
+    button ng-click="remove(contenedor)" X
   span
     span ng-hide="contenedor.editing" ng-dblclick="editContenedor(contenedor)" {{contenedor.name}}
     input event-focus="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""

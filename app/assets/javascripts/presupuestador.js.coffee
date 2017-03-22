@@ -3,6 +3,10 @@ angular.module('presupuestador',[]);
 
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
+    $scope.remove = (contenedor) ->
+      debugger
+      # contenedor.children = contenedor.children || []
+      # contenedor.children.push({name: '', editing: true})
     $scope.add_child = (contenedor) ->
       contenedor.children = contenedor.children || []
       contenedor.children.push({name: '', editing: true})
@@ -11,6 +15,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       contenedor.products.push({code: '', name: ''})
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
+
     $scope.contenedores = [
       {
         name: "hola",
