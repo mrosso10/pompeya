@@ -125,11 +125,11 @@
                           tbody
                             tr ng-repeat="product in contenedor.productos"
                               td 
-                                select ng-model="product" ng-options="p.name for p in all_products "
+                                select ng-change="sumarPrecios(contenedor)" ng-model="product" ng-options="p.name for p in all_products "
                               td -  {{product.precio}}
                             tr
                               td
-                              td Total: {{ sumarPrecios(contenedor) }}
+                              td Total: {{ contenedor.sumatoria }}
 
 
 /                              td - {{product.name}} 

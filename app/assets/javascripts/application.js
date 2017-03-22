@@ -22,6 +22,9 @@ receta = angular.module('receta',[]);
 
 receta.controller('myCtrl' , function($scope) {
 
+
+    // Todos los productos, teoricamente vendrían de la base
+
     $scope.all_products = [{
         id:1,
         name: "Producto1",
@@ -74,7 +77,7 @@ receta.controller('myCtrl' , function($scope) {
         for (var i = 0; i < contenedor.productos.length; i++) {
             sum += contenedor.productos[i].precio;
         }
-        return sum;
+        contenedor.sumatoria = sum;
     };
 
     $scope.editContenedor = function (contenedor) {
@@ -86,12 +89,16 @@ receta.controller('myCtrl' , function($scope) {
         //TODO Pegarle al backend y guardar
     };
 
-    $scope.displayProductos = function (contenedor) {
-        contenedor.displaying = true;
-    }
+    // Calculo el precio inicial de los contenedores sumando las sumas de los productos
+    angular.element(document).ready(function () {
+        for (var i = 0; i < $scope.contenedores.length; i++) {
+            $scope.sumarPrecios($scope.contenedores[i]);
+        }
+    });
 
 });
 
+// Detecto el Enter para los campos donde se edita texto a mano
 receta.directive('myEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
@@ -99,7 +106,6 @@ receta.directive('myEnter', function () {
                 scope.$apply(function (){
                     scope.$eval(attrs.myEnter);
                 });
-
                 event.preventDefault();
             }
         });
