@@ -1,10 +1,18 @@
 .container-info
   span
-    button ng-click="add_child(contenedor)" Add
+    button ng-click="add_child(contenedor)" C
+    button ng-click="add_product(contenedor)" P
+    button ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)" {{ contenedor.collapse ? '+' : '-' }}
   span
     span ng-hide="contenedor.editing" ng-dblclick="editContenedor(contenedor)" {{contenedor.name}}
-    input ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""
-.container-children
-  .child ng-repeat="contenedor in contenedor.children"
-    .contenedor ng-include="'contenedor'"
-
+    input event-focus="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""
+.container-details ng-hide="contenedor.collapse"
+  .container-children
+    .child ng-repeat="contenedor in contenedor.children"
+      .tree-node.contenedor ng-include="'contenedor'"
+  .products
+    .tree-node.product ng-repeat="product in contenedor.products"
+      span
+        input event-focus="" ng-model="product.code"
+      span
+        | {{ product.name }}

@@ -4,9 +4,13 @@ angular.module('presupuestador',[]);
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
     $scope.add_child = (contenedor) ->
-      # debugger
       contenedor.children = contenedor.children || []
-      contenedor.children.push({name: 'hijito'})
+      contenedor.children.push({name: '', editing: true})
+    $scope.add_product = (contenedor) ->
+      contenedor.products = contenedor.products || []
+      contenedor.products.push({code: '', name: ''})
+    $scope.collapse = (contenedor) ->
+      contenedor.collapse = !contenedor.collapse
     $scope.contenedores = [
       {
         name: "hola",
@@ -36,3 +40,14 @@ angular.module('presupuestador').directive 'myEnter', ->
         scope.$apply ->
           scope.$eval(attrs.myEnter);
         event.preventDefault();
+
+angular.module('presupuestador').directive 'eventFocus', ['focus', (focus) ->
+  (scope, elem, attr) ->
+    focus(elem)
+]
+
+angular.module('presupuestador').factory 'focus', ($timeout) ->
+  (id) ->
+    $timeout ->
+      if element = angular.element(id)
+        element.focus()
