@@ -107,3 +107,32 @@
                       td
                         a href="#" 
                           i.fa.fa-check.text-navy
+              .table-responsive
+                table.table.table-striped ng-controller="myCtrl" 
+                  button ng-click="addContenedor()" Agregar Contenedor
+                  thead
+                    tr
+                      th Contenedor
+                  tbody
+                    tr ng-repeat="contenedor in contenedores"
+                      td
+                        span ng-hide="contenedor.editing" ng-dblclick="editContenedor(contenedor)" {{contenedor.name}}
+                        input ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""
+                      td
+                        button ng-class="{true: 'btn-primary', false: 'btn-danger'}[!contenedor.displaying]" ng-click="contenedor.displaying = !contenedor.displaying" {{!contenedor.displaying && 'Mostrar Productos' || 'Ocultar Productos'}}
+                      td
+                        table.table.table-striped ng-show="contenedor.displaying"
+                          tbody
+                            tr ng-repeat="product in contenedor.productos"
+                              td 
+                                select ng-model="product" ng-options="p.name for p in all_products "
+                              td -  {{product.precio}}
+                            tr
+                              td
+                              td Total: {{ sumarPrecios(contenedor) }}
+
+
+/                              td - {{product.name}} 
+                              / Si no pongo guion pincha slim, ni idea porque
+                                
+                    
