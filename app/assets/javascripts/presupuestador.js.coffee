@@ -43,6 +43,25 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       for child in contenedor.children || []
         total = total + $scope.contenedor_total(child)
       Math.round(total*100)/100 # Sino bardean los decimales
+    
+    $scope.mano_de_obra_total = (contenedor) ->
+      total = 0
+      for product in contenedor.products || []
+        if product.is_work && !product.is_subcontrato
+          total = total + product.price * product.quantity
+      Math.round(total*100)/100 # Sino bardean los decimales
+    $scope.materiales_total = (contenedor) ->
+      total = 0
+      for product in contenedor.products || []
+        if !product.is_work && !product.is_subcontrato
+          total = total + product.price * product.quantity
+      Math.round(total*100)/100 # Sino bardean los decimales
+    $scope.subcontratos_total = (contenedor) ->
+      total = 0
+      for product in contenedor.products || []
+        if product.is_subcontrato
+          total = total + product.price * product.quantity
+      Math.round(total*100)/100 # Sino bardean los decimales
 
     $scope.add_product = (product) ->
       contenedor = $scope.current_contenedor
@@ -58,6 +77,22 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       total=0
       for n1 in $scope.contenedores || []
         total += $scope.contenedor_total(n1)
+      total
+    $scope.total_mano_de_obra = ->
+      total=0
+      for i, n1 of $scope.nodes || []
+        total += $scope.mano_de_obra_total(n1)
+      total
+    $scope.total_materiales = ->
+      total=0
+      for i, n1 of $scope.nodes || []
+        total += $scope.materiales_total(n1)
+      total
+
+    $scope.total_subcontratos = ->
+      total=0
+      for i, n1 of $scope.nodes || []
+        total += $scope.subcontratos_total(n1)
       total
 
     $scope.all_products = [

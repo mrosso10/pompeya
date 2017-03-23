@@ -1,9 +1,30 @@
 .wrapper.wrapper-content ng-app="presupuestador"
   .row ng-controller="PresupuestadorCtrl"
     .row
-      .col-lg-9
-        button.btn.btn-w-m.btn-primary ng-click="add_child()" style="margin-bottom:1em" Agregar contenedor
-        button.btn.btn-w-m.btn-success style="margin-left:1em; margin-bottom:1em" Grabar presupuesto
+      .col-lg-3
+        .widget.style1.navy-bg
+          .row
+            .col-xs-8.text-center
+              span Total materiales
+              h2.font-bold $ {{ total_materiales() }}
+            .col-xs-4.text-right
+              i.fa.fa-money.fa-5x
+      .col-lg-3
+        .widget.style1.navy-bg
+          .row
+            .col-xs-8.text-center
+              span Total mano de obra
+              h2.font-bold $ {{ total_mano_de_obra() }}
+            .col-xs-4.text-right
+              i.fa.fa-money.fa-5x
+      .col-lg-3
+        .widget.style1.navy-bg
+          .row
+            .col-xs-8.text-center
+              span Total subcontratos
+              h2.font-bold $ {{ total_subcontratos() }}
+            .col-xs-4.text-right
+              i.fa.fa-money.fa-5x
       .col-lg-3
         .widget.style1.navy-bg
           .row
@@ -14,6 +35,8 @@
               i.fa.fa-money.fa-5x
     
     .contenedor ng-repeat="contenedor in contenedores" ng-include="'contenedor_template'"
+
+    button.btn.btn-w-m.btn-primary ng-click="add_child()" style="margin-top:1em" Agregar contenedor
 
     #myModal.modal.fade role="dialog" tabindex="-1" 
       .modal-dialog role="document" 
