@@ -103,7 +103,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
             name: "Torres",
             products: [
               { id: 1241, container_id: 3249, name: "Viga de acero", price: 232.21, quantity: 1, is_work:true},
-              { id: 2323, container_id: 3249, name: "Ventanales", price: 602.52, quantity: 2, is_work:false}
+              { id: 2323, container_id: 3249, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
             ]
           }
         ],
