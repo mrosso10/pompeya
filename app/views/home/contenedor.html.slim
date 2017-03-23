@@ -10,12 +10,12 @@
     | Total: $ 
     | {{ contenedor_total(contenedor) }}
   span.actions
-    button.btn.btn-xs ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
+    button.btn.btn-xs.btn-success ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
       i.fa.fa-plus aria-hidden="true"
     / button.btn.btn-xs data-target="#myModal" data-toggle="modal" type="button"
-    button.btn.btn-xs ng-click="open_modal(contenedor)" data-toggle="tooltip" title="Agregar producto"
+    button.btn.btn-xs.btn-info ng-click="open_modal(contenedor)" data-toggle="tooltip" title="Agregar producto"
       | P
-    button.btn.btn-xs ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
+    button.btn.btn-xs.btn-danger ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
       i.fa.fa-remove aria-hidden="true"
 .container-details ng-hide="contenedor.collapse"
   .container-children
@@ -36,7 +36,7 @@
       span
         | Total: {{ product.price * product.quantity }}
       span.actions
-        button.btn.btn-xs ng-click="remove_product(product)" data-toggle="tooltip" title="Eliminar"
+        button.btn.btn-xs.btn-danger ng-click="remove_product(product)" data-toggle="tooltip" title="Eliminar"
           i.fa.fa-remove aria-hidden="true"
 / .item-overlay
 javascript:

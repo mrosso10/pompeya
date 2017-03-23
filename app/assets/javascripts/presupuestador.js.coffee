@@ -10,8 +10,13 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       index = this.nodes[product.container_id].products.indexOf(product)
       this.nodes[product.container_id].products.splice(index, 1)
     $scope.remove = (contenedor) ->
-      index = this.nodes[contenedor.parent_id].children.indexOf(contenedor)
-      this.nodes[contenedor.parent_id].children.splice(index, 1)
+      if contenedor.parent_id?
+        index = this.nodes[contenedor.parent_id].children.indexOf(contenedor)
+        this.nodes[contenedor.parent_id].children.splice(index, 1)
+      else
+        index = this.contenedores.indexOf(contenedor)
+        this.contenedores.splice(index,1)
+
       # contenedor.children = contenedor.children || []
       # contenedor.children.push({name: '', editing: true})
     $scope.add_child = (contenedor) ->
@@ -26,7 +31,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
         total = total + product.price * product.quantity
       for child in contenedor.children || []
         total = total + $scope.contenedor_total(child)
-      total
+      Math.round(total*100)/100 # Sino bardean los decimales
 
     $scope.add_product = (product) ->
       contenedor = $scope.current_contenedor
@@ -35,6 +40,17 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       $('#myModal').modal('hide')
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
+
+    $scope.add_contenedor =  ->
+      new_contenedor= {id:33,name:"Nuevo Contenedor"} # Como generamos ID ?
+      $scope.contenedores.push(new_contenedor)
+      add_node(new_contenedor)
+
+    $scope.total_pesupuesto = ->
+      total=1
+      for n1 in $scope.contenedores || []
+        total += $scope.contenedor_total(n1)
+      total
 
     $scope.all_products = [
       {
@@ -64,8 +80,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
             parent_id: 1124,
             name: "hijo 2",
             products: [
-              { id: 1241, container_id: 1124, name: "producto 1", price: 232.21, quantity: 1},
-              { id: 2323, container_id: 1124, name: "producto 2", price: 602.52, quantity: 2}
+              { id: 1241, container_id: 3249, name: "producto 1", price: 232.21, quantity: 1},
+              { id: 2323, container_id: 3249, name: "producto 2", price: 602.52, quantity: 2}
             ]
           }
         ],
@@ -79,6 +95,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       }
     ]
     $scope.nodes = {}
+
 
     add_node = (node) ->
       $scope.nodes[node.id] = node
