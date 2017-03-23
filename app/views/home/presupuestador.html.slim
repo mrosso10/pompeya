@@ -6,7 +6,8 @@
           .row
             .col-xs-8.text-center
               span Total materiales
-              h2.font-bold $ {{ total_materiales() }}
+              h2.font-bold
+                | {{ total_materiales() | moneda }}
             .col-xs-4.text-right
               i.fa.fa-money.fa-5x
       .col-lg-3
@@ -14,7 +15,8 @@
           .row
             .col-xs-8.text-center
               span Total mano de obra
-              h2.font-bold $ {{ total_mano_de_obra() }}
+              h2.font-bold
+                | {{ total_mano_de_obra() | moneda }}
             .col-xs-4.text-right
               i.fa.fa-money.fa-5x
       .col-lg-3
@@ -22,7 +24,8 @@
           .row
             .col-xs-8.text-center
               span Total subcontratos
-              h2.font-bold $ {{ total_subcontratos() }}
+              h2.font-bold
+                | {{ total_subcontratos() | moneda }}
             .col-xs-4.text-right
               i.fa.fa-money.fa-5x
       .col-lg-3
@@ -30,7 +33,8 @@
           .row
             .col-xs-8.text-center
               span Total presupuestado
-              h2.font-bold $ {{ total_pesupuesto() }}
+              h2.font-bold
+                | {{ total_pesupuesto() | moneda }}
             .col-xs-4.text-right
               i.fa.fa-money.fa-5x
     
@@ -70,9 +74,12 @@
         button.btn.btn-xs ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)"
           i.fa.fa-plus aria-hidden="true" ng-show="contenedor.collapse"
           i.fa.fa-minus aria-hidden="true" ng-hide="contenedor.collapse"
-      .container-name
-        span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)" {{contenedor.name || "Ingrese un nombre..."}}
-        input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
+      .index.font-bold
+        | {{container_index(contenedor)}}. 
+      .container-name.font-bold
+        span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)"
+          | {{contenedor.name || "Ingrese un nombre..."}}
+        input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doaneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
       .actions
         button.btn.btn-xs.btn-success ng-hide="contenedor.products.length > 0" ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
           i.fa.fa-plus aria-hidden="true"
@@ -82,9 +89,8 @@
           i.fa.fa-user aria-hidden="true"
         button.btn.btn-xs.btn-danger ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
           i.fa.fa-remove aria-hidden="true"
-      .totals
-        | $ 
-        | {{ contenedor_total(contenedor) }}
+      .totals.font-bold
+        | {{ contenedor_total(contenedor) | moneda }}
     .container-details ng-hide="contenedor.collapse"
       .contenedor ng-repeat="contenedor in contenedor.children" ng-include="'contenedor_template'"
       .table-wrapper
@@ -113,11 +119,11 @@
                       span.onoffswitch-inner
                       span.onoffswitch-switch
             td.text
-              | $ {{ product.price }}
+              | {{ product.price | moneda }}
             td.quantity
               input.form-control type="number" ng-model="product.quantity"
             td.text
-              | $ {{ product.price * product.quantity }}
+              | {{ product.price * product.quantity | moneda }}
             td
               .actions
                 button.btn.btn-xs.btn-danger ng-click="remove_product(product)" data-toggle="tooltip" title="Eliminar"

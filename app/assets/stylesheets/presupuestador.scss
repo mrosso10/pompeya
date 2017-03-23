@@ -1,3 +1,7 @@
+.font-bold {
+  font-size: 16px;
+  font-weight: bold;
+}
 .container-info {
   background-color: #ddf1f7;
   border-top: 1px solid lightgrey;
@@ -12,11 +16,11 @@
       visibility: visible;
     }
   }
+  .index {
+    margin-left: 24px;
+  }
   .container-name {
     display: inline-block;
-    font-size: 15px;
-    font-weight: bold;
-    margin-left: 24px;
 
     span {
       line-height: 33px;
@@ -37,8 +41,6 @@
   .totals {
     float: right;
     margin-right: 30px;
-    font-size: 16px;
-    font-weight: bold;
     margin-top: 7px;
     width: 120px;
   }
