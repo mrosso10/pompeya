@@ -28,7 +28,10 @@
   min-height: 30px;
 }
 
-.tree-node {  
+.tree-node {
+  input[type=text] {
+    height: 29px;
+  }
   ul {
     list-style-type: none;
     margin:0;
