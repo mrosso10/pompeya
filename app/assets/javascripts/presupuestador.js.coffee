@@ -9,19 +9,24 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.remove_product = (product) ->
       index = this.nodes[product.container_id].products.indexOf(product)
       this.nodes[product.container_id].products.splice(index, 1)
+
     $scope.remove = (contenedor) ->
       if contenedor.parent_id?
-        index = this.nodes[contenedor.parent_id].children.indexOf(contenedor)
-        this.nodes[contenedor.parent_id].children.splice(index, 1)
+        collection = this.nodes[contenedor.parent_id].children
       else
-        index = this.contenedores.indexOf(contenedor)
-        this.contenedores.splice(index,1)
+        collection = this.contenedores
+      index = collection.indexOf(contenedor)
+      collection.splice(index,1)
 
-      # contenedor.children = contenedor.children || []
-      # contenedor.children.push({name: '', editing: true})
     $scope.add_child = (contenedor) ->
-      contenedor.children = contenedor.children || []
-      contenedor.children.push({name: '', editing: true, parent_id: contenedor.id})
+      new_contenedor= {id: Math.round(Math.random() * 9999999), name: '', editing: true} # Como generamos ID ?
+      if contenedor
+        contenedor.children = contenedor.children || []
+        new_contenedor['parent_id'] = contenedor.id
+        contenedor.children.push new_contenedor
+      else
+        $scope.contenedores.push new_contenedor
+      add_node(new_contenedor)
     
     $scope.open_modal = (contenedor) ->
       $scope.current_contenedor = contenedor
@@ -48,11 +53,6 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
 
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
-
-    $scope.add_contenedor =  ->
-      new_contenedor= {id:33,name:"Nuevo Contenedor"} # Como generamos ID ?
-      $scope.contenedores.push(new_contenedor)
-      add_node(new_contenedor)
 
     $scope.total_pesupuesto = ->
       total=0
@@ -90,31 +90,36 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.contenedores = [
       {
         id: 1124,
-        name: "Frente",
+        name: "Ingeniería",
+        products: [
+          { id: 1241, container_id: 3267, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
+          { id: 2323, container_id: 3267, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
+        ]
+      },
+      {
+        id: 5232,
+        name: "Instalación",
         children: [
           {
-            id: 6513,
-            parent_id: 1124,
-            name: "Pisos"
+            id: 3219,
+            parent_id: 5232,
+            name: "Pisos",
+            products: [
+              { id: 1241, container_id: 3219, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
+              { id: 2323, container_id: 3219, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+            ]
           },
           {
-            id: 3249,
-            parent_id: 1124,
+            id: 6519,
+            parent_id: 5232,
             name: "Torres",
             products: [
-              { id: 1241, container_id: 3249, name: "Viga de acero", price: 232.21, quantity: 1, is_work:true},
-              { id: 2323, container_id: 3249, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+              { id: 1241, container_id: 6519, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
+              { id: 2323, container_id: 6519, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
             ]
           }
         ],
       },
-      {
-        id: 5232,
-        name: "Fondo",
-        children: [
-          { id: 6543, parent_id: 5232, name: "Patio"}
-        ]
-      }
     ]
     $scope.nodes = {}
 
