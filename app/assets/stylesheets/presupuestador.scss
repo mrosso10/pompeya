@@ -25,7 +25,7 @@
 }
 
 .container-info, .tree-node.product, .tree-node.work {
-  height: 30px;
+  min-height: 30px;
 }
 
 .tree-node {  
@@ -41,6 +41,9 @@
   span {
     margin-right: 15px;
     width: 100px;
+    display: inline-block;
+    word-break:break-all;
+
   }
 
   span.actions {
