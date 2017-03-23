@@ -22,9 +22,15 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.add_child = (contenedor) ->
       contenedor.children = contenedor.children || []
       contenedor.children.push({name: '', editing: true, parent_id: contenedor.id})
+    
     $scope.open_modal = (contenedor) ->
       $scope.current_contenedor = contenedor
       $('#myModal').modal('show')
+    
+    $scope.open_modal_work = (contenedor) ->
+      $scope.current_contenedor = contenedor
+      $('#myModalWork').modal('show')
+    
     $scope.contenedor_total = (contenedor) ->
       total = 0
       for product in contenedor.products || []
@@ -36,8 +42,10 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.add_product = (product) ->
       contenedor = $scope.current_contenedor
       contenedor.products = contenedor.products || []
-      contenedor.products.push({id: product.id, name: product.name, price: product.price, container_id: contenedor.id, quantity: 1})
+      contenedor.products.push({id: product.id, name: product.name, price: product.price, is_work: product.is_work, container_id: contenedor.id, quantity: 1})
       $('#myModal').modal('hide')
+      $('#myModalWork').modal('hide')
+
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
 
@@ -55,42 +63,56 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.all_products = [
       {
           id:1,
-          name: "Producto1",
+          name: "Vigas",
           price: 20,
+          is_work: false,
       },
       {
           id:2,
-          name: "Producto2",
+          name: "Cemento",
           price: 30,
+          is_work: false,
+      },
+      {
+        id:3,
+        name: "Obrero",
+        price: 100,
+        is_work: true
+      },
+      {
+        id:4,
+        name: "Arquitecto",
+        price: 150,
+        is_work: true
       }
     ]
 
     $scope.contenedores = [
       {
         id: 1124,
-        name: "hola",
+        name: "Frente",
         children: [
           {
             id: 6513,
             parent_id: 1124,
-            name: "hijo 1"
+            name: "Pisos"
           },
           {
             id: 3249,
             parent_id: 1124,
-            name: "hijo 2",
+            name: "Torres",
             products: [
-              { id: 1241, container_id: 3249, name: "producto 1", price: 232.21, quantity: 1},
-              { id: 2323, container_id: 3249, name: "producto 2", price: 602.52, quantity: 2}
+              { id: 1241, container_id: 3249, name: "Viga de acero", price: 232.21, quantity: 1, is_work:true},
+              { id: 2323, container_id: 3249, name: "Ventanales", price: 602.52, quantity: 2, is_work:false}
             ]
           }
         ],
       },
       {
         id: 5232,
-        name: "hola 2",
+        name: "Fondo",
         children: [
-          { id: 6543, parent_id: 5232, name: "hijo 3"}
+          { id: 6543, parent_id: 5232, name: "Patio"}
         ]
       }
     ]

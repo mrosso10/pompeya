@@ -24,9 +24,35 @@
   }
 }
 
-.container-info, .tree-node.product {
+.container-info, .tree-node.product, .tree-node.work {
   height: 30px;
 }
+
+.tree-node {  
+  ul {
+    list-style-type: none;
+  }
+
+  ul li span { 
+    float: left;
+    width: 100px;
+  }
+
+  span {
+    margin-right: 15px;
+    width: 100px;
+  }
+
+  span.actions {
+    float: right;
+    width: auto;
+  }
+
+  input {
+    width: 100px;
+  }
+}
+
 .tree-node.product {
   &:hover {
     background-color: #EEE;
@@ -34,10 +60,18 @@
       visibility: visible;
     }
   }
-  span {
-    margin-right: 15px;
+}
+
+.tree-node.work {
+  background-color:#e6e6ff;
+  &:hover {
+    background-color: #ccccff;
+    .actions {
+      visibility: visible;
+    }
   }
 }
+
 .collapse-toggler {
   width: 50px;
   display: inline-block;

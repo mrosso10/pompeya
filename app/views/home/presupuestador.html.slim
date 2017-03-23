@@ -26,7 +26,20 @@
                   span aria-hidden="true"  &times;
                 h4#myModalLabel.modal-title Seleccione un producto
               .modal-body
-                select ng-model="selected_product" ng-options="p.name for p in all_products"
+                select ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: false } "
+              .modal-footer
+                button.btn.btn-default data-dismiss="modal" type="button"  Cancelar
+                button.btn.btn-primary type="button" ng-disabled="selected_product == nil" ng-click="add_product(selected_product)" Aceptar
+
+        #myModalWork.modal.fade role="dialog" tabindex="-1" 
+          .modal-dialog role="document" 
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button" 
+                  span aria-hidden="true"  &times;
+                h4#myModalLabel.modal-title Seleccione mano de obra
+              .modal-body
+                select ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: true } "
               .modal-footer
                 button.btn.btn-default data-dismiss="modal" type="button"  Cancelar
                 button.btn.btn-primary type="button" ng-disabled="selected_product == nil" ng-click="add_product(selected_product)" Aceptar
