@@ -47,7 +47,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       add_node(new_contenedor)
 
     $scope.total_pesupuesto = ->
-      total=1
+      total=0
       for n1 in $scope.contenedores || []
         total += $scope.contenedor_total(n1)
       total
