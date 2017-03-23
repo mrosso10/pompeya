@@ -24,8 +24,19 @@
   }
 }
 
-.container-info {
+.container-info, .tree-node.product {
   height: 30px;
+}
+.tree-node.product {
+  &:hover {
+    background-color: #EEE;
+    .actions {
+      visibility: visible;
+    }
+  }
+  span {
+    margin-right: 15px;
+  }
 }
 .collapse-toggler {
   width: 50px;
@@ -41,6 +52,9 @@
   span {
     cursor: pointer;
   }
+}
+span.actions {
+  float: right;
 }
 
 // .item-overlay {

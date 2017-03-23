@@ -1,6 +1,19 @@
-.wrapper.wrapper-content.animated.fadeInRight ng-app="presupuestador"
+.wrapper.wrapper-content ng-app="presupuestador"
   .row
     .col-lg-12
       .row ng-controller="PresupuestadorCtrl"
         div ng-repeat="contenedor in contenedores"
           .tree-node.contenedor ng-include="'contenedor'"
+
+        #myModal.modal.fade role="dialog" tabindex="-1" 
+          .modal-dialog role="document" 
+            .modal-content
+              .modal-header
+                button.close aria-label="Close" data-dismiss="modal" type="button" 
+                  span aria-hidden="true"  &times;
+                h4#myModalLabel.modal-title Seleccione un producto
+              .modal-body
+                select ng-model="selected_product" ng-options="p.name for p in all_products"
+              .modal-footer
+                button.btn.btn-default data-dismiss="modal" type="button"  Cancelar
+                button.btn.btn-primary type="button" ng-disabled="selected_product == nil" ng-click="add_product(selected_product)" Aceptar

@@ -6,10 +6,14 @@
   span.item-name
     span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)" {{contenedor.name || "Ingrese un nombre..."}}
     input event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
-  span.actions style="float:right"
+  span style="margin-left: 40px"
+    | Total: $ 
+    | {{ contenedor_total(contenedor) }}
+  span.actions
     button.btn.btn-xs ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
       i.fa.fa-plus aria-hidden="true"
-    button.btn.btn-xs ng-click="add_product(contenedor)" data-toggle="tooltip" title="Agregar producto"
+    / button.btn.btn-xs data-target="#myModal" data-toggle="modal" type="button"
+    button.btn.btn-xs ng-click="open_modal(contenedor)" data-toggle="tooltip" title="Agregar producto"
       | P
     button.btn.btn-xs ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
       i.fa.fa-remove aria-hidden="true"
@@ -20,9 +24,20 @@
     .tree-node.product ng-repeat="product in contenedor.products"
       span.collapse-toggler
       span
-        input event-focus="" ng-model="product.code"
+        | {{ product.id }}
       span
         | {{ product.name }}
+        / input event-focus="" ng-model=""
+        / select ng-model="product" ng-options="p.name for p in all_products"
+      span
+        | $ {{ product.price }}
+      span
+        input ng-model="product.quantity"
+      span
+        | Total: {{ product.price * product.quantity }}
+      span.actions
+        button.btn.btn-xs ng-click="remove_product(product)" data-toggle="tooltip" title="Eliminar"
+          i.fa.fa-remove aria-hidden="true"
 / .item-overlay
 javascript:
   $("button[data-toggle=tooltip], .has-tooltip").tooltip()

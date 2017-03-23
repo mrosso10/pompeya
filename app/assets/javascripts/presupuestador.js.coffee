@@ -4,6 +4,11 @@ angular.module('presupuestador',[]);
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
     window.SCOPE = $scope
+    $scope.current_contenedor = null
+    
+    $scope.remove_product = (product) ->
+      index = this.nodes[product.container_id].products.indexOf(product)
+      this.nodes[product.container_id].products.splice(index, 1)
     $scope.remove = (contenedor) ->
       index = this.nodes[contenedor.parent_id].children.indexOf(contenedor)
       this.nodes[contenedor.parent_id].children.splice(index, 1)
@@ -12,20 +17,58 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.add_child = (contenedor) ->
       contenedor.children = contenedor.children || []
       contenedor.children.push({name: '', editing: true, parent_id: contenedor.id})
-    $scope.add_product = (contenedor) ->
+    $scope.open_modal = (contenedor) ->
+      $scope.current_contenedor = contenedor
+      $('#myModal').modal('show')
+    $scope.contenedor_total = (contenedor) ->
+      total = 0
+      for product in contenedor.products || []
+        total = total + product.price * product.quantity
+      for child in contenedor.children || []
+        total = total + $scope.contenedor_total(child)
+      total
+
+    $scope.add_product = (product) ->
+      contenedor = $scope.current_contenedor
       contenedor.products = contenedor.products || []
-      contenedor.products.push({code: '', name: '', container_id: contenedor.id})
+      contenedor.products.push({id: product.id, name: product.name, price: product.price, container_id: contenedor.id, quantity: 1})
+      $('#myModal').modal('hide')
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
+
+    $scope.all_products = [
+      {
+          id:1,
+          name: "Producto1",
+          price: 20,
+      },
+      {
+          id:2,
+          name: "Producto2",
+          price: 30,
+      }
+    ]
 
     $scope.contenedores = [
       {
         id: 1124,
         name: "hola",
         children: [
-          { id: 6513, parent_id: 1124, name: "hijo 1"},
-          { id: 3249, parent_id: 1124, name: "hijo 2"}
-        ]
+          {
+            id: 6513,
+            parent_id: 1124,
+            name: "hijo 1"
+          },
+          {
+            id: 3249,
+            parent_id: 1124,
+            name: "hijo 2",
+            products: [
+              { id: 1241, container_id: 1124, name: "producto 1", price: 232.21, quantity: 1},
+              { id: 2323, container_id: 1124, name: "producto 2", price: 602.52, quantity: 2}
+            ]
+          }
+        ],
       },
       {
         id: 5232,
