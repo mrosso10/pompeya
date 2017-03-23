@@ -1,19 +1,28 @@
 .container-info
-  span
-    button ng-click="add_child(contenedor)" C
-    button ng-click="add_product(contenedor)" P
-    button ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)" {{ contenedor.collapse ? '+' : '-' }}
-    button ng-click="remove(contenedor)" X
-  span
-    span ng-hide="contenedor.editing" ng-dblclick="editContenedor(contenedor)" {{contenedor.name}}
-    input event-focus="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus=""
+  span.collapse-toggler
+    button.btn.btn-xs ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)"
+      i.fa.fa-plus aria-hidden="true" ng-show="contenedor.collapse"
+      i.fa.fa-minus aria-hidden="true" ng-hide="contenedor.collapse"
+  span.item-name
+    span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)" {{contenedor.name || "Ingrese un nombre..."}}
+    input event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
+  span.actions style="float:right"
+    button.btn.btn-xs ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
+      i.fa.fa-plus aria-hidden="true"
+    button.btn.btn-xs ng-click="add_product(contenedor)" data-toggle="tooltip" title="Agregar producto"
+      | P
+    button.btn.btn-xs ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
+      i.fa.fa-remove aria-hidden="true"
 .container-details ng-hide="contenedor.collapse"
   .container-children
-    .child ng-repeat="contenedor in contenedor.children"
-      .tree-node.contenedor ng-include="'contenedor'"
+    .tree-node.contenedor ng-repeat="contenedor in contenedor.children" ng-include="'contenedor'"
   .products
     .tree-node.product ng-repeat="product in contenedor.products"
+      span.collapse-toggler
       span
         input event-focus="" ng-model="product.code"
       span
         | {{ product.name }}
+/ .item-overlay
+javascript:
+  $("button[data-toggle=tooltip], .has-tooltip").tooltip()

@@ -1,4 +1,50 @@
-.tree-node {
+.container-details {
   margin-left: 20px;
+}
+.tree-node {
   border-top: 1px solid lightgrey;
 }
+
+.actions {
+  padding-top: 4px;
+  visibility: hidden;
+
+  button {
+    margin-left: 5px;
+  }
+}
+
+.container-info {
+  background-color: #ddf1f7;
+}
+.container-info:hover {
+  background-color: #ceeef9;
+  .actions {
+    visibility: visible;
+  }
+}
+
+.container-info {
+  height: 30px;
+}
+.collapse-toggler {
+  width: 50px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 4px;
+  margin-left: 4px;
+}
+.item-name {
+  padding-top: 6px;
+  display: inline-block;
+
+  span {
+    cursor: pointer;
+  }
+}
+
+// .item-overlay {
+//   background-color: blue;
+//   width: 10px;
+//   height: 10px;
+// }

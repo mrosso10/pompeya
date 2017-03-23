@@ -21,8 +21,6 @@
 receta = angular.module('receta',[]);
 
 receta.controller('myCtrl' , function($scope) {
-
-
     // Todos los productos, teoricamente vendrían de la base
     $scope.all_products = [{
         id:1,
