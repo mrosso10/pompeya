@@ -92,8 +92,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
         id: 1124,
         name: "Ingeniería",
         products: [
-          { id: 1241, container_id: 3267, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
-          { id: 2323, container_id: 3267, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
+          { id: 'NL10X5', container_id: 3267, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
+          { id: 'EF 1950', container_id: 3267, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
         ]
       },
       {
@@ -105,8 +105,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
             parent_id: 5232,
             name: "Pisos",
             products: [
-              { id: 1241, container_id: 3219, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
-              { id: 2323, container_id: 3219, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+              { id: 'A1815-250-CW', container_id: 3219, name: "Instalación", price: 232.21, quantity: 1, is_work:true, is_subcontrato: true},
+              { id: 'A1815-250-RA', container_id: 3219, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
             ]
           },
           {
@@ -114,8 +114,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
             parent_id: 5232,
             name: "Torres",
             products: [
-              { id: 1241, container_id: 6519, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
-              { id: 2323, container_id: 6519, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+              { id: 'KL-250', container_id: 6519, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
+              { id: 'S-250', container_id: 6519, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
             ]
           }
         ],

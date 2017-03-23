@@ -30,6 +30,9 @@
   .actions {
     visibility: hidden;
     float: right;
+    width: 135px;
+    text-align: right;
+    padding-right: 14px;
   }
   .totals {
     float: right;
@@ -90,9 +93,15 @@
     td.text {
       padding: 6px 4px;
     }
+    td.quantity input {
+      width: 100px;
+    }
 
     tbody tr td {
       padding: 1px 10px;
+    }
+    td .switch {
+      margin-top: 7px;
     }
   }
 }
@@ -120,4 +129,12 @@
   vertical-align: top;
   margin-top: 4px;
   margin-left: 4px;
+}
+
+.onoffswitch-inner:before {
+  content: "SI";
+}
+
+.onoffswitch-inner:after {
+  content: "NO";
 }
