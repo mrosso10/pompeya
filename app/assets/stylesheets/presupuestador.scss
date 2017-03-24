@@ -1,3 +1,23 @@
+.spinner-wrapper {
+  z-index: 9999999;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+
+  .spinner-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 36px;
+    height: 36px;
+    margin: auto;
+  }
+}
 .font-lg {
   font-size: 16px;
   font-weight: bold;
@@ -90,6 +110,7 @@
   table.table {
     width: 100%;
     table-layout: fixed;
+    margin-bottom: 0;
 
     th {
       background-color: #dadada;

@@ -5,6 +5,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
     window.SCOPE = $scope
     $scope.current_contenedor = null
+
+    angular.element('.spinner-wrapper').remove()
     
     $scope.remove_product = (product) ->
       index = this.nodes[product.container_id].products.indexOf(product)
