@@ -13,6 +13,10 @@ nav.navbar-default.navbar-static-side role="navigation"
         = link_to "/presupuestador" do
           i.fa.fa-desktop
           span.nav-label Presupuestador
+      li class=("#{'active' if current_page?('/dashboard')}") 
+        = link_to "/dashboard" do
+          i.fa.fa-desktop
+          span.nav-label Dashboard
     .widget.style1
       .row
         .col-xs-12.text-center

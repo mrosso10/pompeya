@@ -1,0 +1,61 @@
+.wrapper.wrapper-content.animated.fadeInRight
+  .row
+    .col-lg-3
+      .ibox
+        .ibox-content
+          h5.m-b-md Nombre del proyecto
+          h2.text-navy Proyecto prueba
+          small Iniciado hace 55 días
+    .col-lg-3
+      .ibox
+        .ibox-content
+          h5.m-b-md Manager del proyecto
+          h2.text-navy Juan Pablo
+          small Gerente 
+    .col-lg-3
+      .ibox
+        .ibox-content
+          h5.m-b-md Fecha de finalización
+          h2.text-navy 06-05-2017
+          small Faltan 72 días
+    .col-lg-3
+      .ibox
+        .ibox-content
+          h5.m-b-md Estado del proyecto
+          h2.text-navy OK
+          small 33% Completado
+  .row
+    .col-lg-12
+      .ibox
+        .ibox-title
+          h5 Salud del proyecto
+        .ibox-content
+          .row
+            .col-lg-3
+              .ibox
+                .ibox-content
+                  .text-center
+                    h5 Porcentaje completado
+                    small 33%
+                    #graph1 style="margin-top:1em"
+            .col-lg-9
+              .ibox
+                .ibox-content
+                  h5 Detalle de tareas
+                  h5 Ingeniería
+                  .progress.progress-striped
+                    .progress-bar.progress-bar-success style="width: 50%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" 
+                      span.sr-only 50% Complete (success)
+                  h5 Instalación
+                  .progress.progress-striped
+                    .progress-bar.progress-bar-success style="width: 30%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="30" role="progressbar" 
+                      span.sr-only 30% Complete (success)
+                  
+
+      
+javascript:
+  $("#graph1").sparkline([2, 4], {
+      type: 'pie',
+      height: '140',
+      sliceColors: ['#1ab394', '#F5F5F5']
+  });
