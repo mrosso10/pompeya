@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'home#index'
+  root 'home#presupuestador'
 
   get 'presupuestador' => 'home#presupuestador'
   # The priority is based upon order of creation: first created -> highest priority.

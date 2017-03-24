@@ -79,7 +79,7 @@
       .container-name.font-bold
         span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)"
           | {{contenedor.name || "Ingrese un nombre..."}}
-        input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doaneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
+        input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
       .actions
         button.btn.btn-xs.btn-success ng-hide="contenedor.products.length > 0" ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
           i.fa.fa-plus aria-hidden="true"
