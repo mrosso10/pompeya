@@ -2,11 +2,14 @@
 angular.module('presupuestador', ['filtrosPresupuestador', 'counter']);
 
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
-  ($scope) ->
+  ($scope, $timeout) ->
     window.SCOPE = $scope
     $scope.current_contenedor = null
 
-    angular.element('.spinner-wrapper').remove()
+    $timeout( ->
+      angular.element('.spinner-wrapper').fadeOut()
+    ,1300)
+    
     
     $scope.remove_product = (product) ->
       index = this.nodes[product.container_id].products.indexOf(product)
