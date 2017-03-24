@@ -115,8 +115,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
         id: 1124,
         name: "Ingeniería",
         products: [
-          { id: 'NL10X5', container_id: 3267, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
-          { id: 'EF 1950', container_id: 3267, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
+          { id: 'NL10X5', container_id: 1124, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
+          { id: 'EF 1950', container_id: 1124, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
         ]
       },
       {
