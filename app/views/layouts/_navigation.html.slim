@@ -13,25 +13,25 @@ nav.navbar-default.navbar-static-side role="navigation"
         = link_to "/presupuestador" do
           i.fa.fa-desktop
           span.nav-label Presupuestador
-    .widget.style1.navy-bg
+    .widget.style1
       .row
         .col-xs-12.text-center
           span Total materiales
           h3.font-bold.counter value="total_materiales_value" to="total_materiales()" duration="400"
             | {{ total_materiales_value | moneda }}
-    .widget.style1.navy-bg
+    .widget.style1
       .row
         .col-xs-12.text-center
           span Total mano de obra
           h3.font-bold.counter value="total_mano_de_obra_value" to="total_mano_de_obra()" duration="400"
             | {{ total_mano_de_obra_value | moneda }}
-    .widget.style1.navy-bg
+    .widget.style1
       .row
         .col-xs-12.text-center
           span Total subcontratos
           h3.font-bold.counter value="total_subcontratos_value" to="total_subcontratos()" duration="400"
             | {{ total_subcontratos_value | moneda }}
-    .widget.style1.navy-bg
+    .widget.style1
       .row
         .col-xs-12.text-center
           span Total presupuestado

@@ -33,6 +33,7 @@
 }
 .sidebar-collapse {
   .widget {
+    color: #eaeaea;
     opacity: 1;
     transition:opacity 0.5s linear;
     transition-delay: 0.3s;
@@ -70,7 +71,7 @@
   .actions {
     visibility: hidden;
     float: right;
-    width: 135px;
+    width: 160px;
     text-align: right;
     padding-right: 14px;
   }
