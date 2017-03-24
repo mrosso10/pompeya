@@ -158,6 +158,9 @@ GEM
       railties (>= 3.1)
     multi_json (1.11.2)
     nested_form (0.3.2)
+    ngannotate-rails (1.2.1)
+      execjs
+      rails (>= 3.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     orm_adapter (0.5.0)
@@ -349,6 +352,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   momentjs-rails
+  ngannotate-rails
   pg
   pry-rails
   puma

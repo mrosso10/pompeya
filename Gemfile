@@ -20,7 +20,7 @@ gem 'rollbar', '~> 2.4.0'
 gem 'audited-activerecord', '~> 4.0'
 gem 'momentjs-rails'
 gem 'spinjs-rails'
-
+gem 'ngannotate-rails'
 
 
 # For Heroku

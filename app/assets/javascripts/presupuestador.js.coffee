@@ -1,5 +1,5 @@
 
-angular.module('presupuestador',['filtrosPresupuestador', 'counter']);
+angular.module('presupuestador', ['filtrosPresupuestador', 'counter']);
 
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
