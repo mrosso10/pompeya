@@ -2,7 +2,7 @@
 angular.module('presupuestador', ['filtrosPresupuestador', 'counter']);
 
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
-  ($scope, $timeout) ->
+  ($scope, $timeout, rand) ->
     window.SCOPE = $scope
     $scope.current_contenedor = null
 
@@ -11,9 +11,9 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     ,1300)
     
     
-    $scope.remove_product = (product) ->
-      index = this.nodes[product.container_id].products.indexOf(product)
-      this.nodes[product.container_id].products.splice(index, 1)
+    $scope.remove_line_item = (line_item) ->
+      index = this.nodes[line_item.container_id].line_items.indexOf(line_item)
+      this.nodes[line_item.container_id].line_items.splice(index, 1)
 
     $scope.remove = (contenedor) ->
       if contenedor.parent_id?
@@ -40,19 +40,18 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     
     $scope.contenedor_total = (contenedor, filter) ->
       total = 0
-      for product in contenedor.products || []
-        if filter == undefined || filter(product)
-          total = total + product.price * product.quantity
+      for line_item in contenedor.line_items || []
+        if filter == undefined || filter(line_item)
+          total = total + line_item.product.price * line_item.quantity
       for child in contenedor.children || []
         total = total + $scope.contenedor_total(child, filter)
       total
     
     $scope.add_product = (product) ->
       contenedor = $scope.current_contenedor
-      contenedor.products = contenedor.products || []
-      contenedor.products.push({id: product.id, name: product.name, price: product.price, is_work: product.is_work, container_id: contenedor.id, quantity: 1})
+      contenedor.line_items = contenedor.line_items || []
+      contenedor.line_items.push({id: rand(), product_id: product.id, product: product, container_id: contenedor.id, quantity: 1 })
       $('#myModal').modal('hide')
-      $('#myModalWork').modal('hide')
 
     $scope.collapse = (contenedor) ->
       contenedor.collapse = !contenedor.collapse
@@ -65,18 +64,18 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.total_mano_de_obra = ->
       total=0
       for n1 in $scope.contenedores || []
-        total += $scope.contenedor_total(n1, (product) -> product.is_work && !product.is_subcontrato)
+        total += $scope.contenedor_total(n1, (line_item) -> line_item.product.is_work && !line_item.is_subcontrato)
       total
     $scope.total_materiales = ->
       total=0
       for n1 in $scope.contenedores || []
-        total += $scope.contenedor_total(n1, (product) -> !product.is_work && !product.is_subcontrato)
+        total += $scope.contenedor_total(n1, (line_item) -> !line_item.product.is_work && !line_item.is_subcontrato)
       total
 
     $scope.total_subcontratos = ->
       total=0
       for n1 in $scope.contenedores || []
-        total += $scope.contenedor_total(n1, (product) -> product.is_subcontrato)
+        total += $scope.contenedor_total(n1, (line_item) -> line_item.is_subcontrato)
       total
     $scope.container_index = (contenedor) ->
       if contenedor.parent_id?
@@ -86,39 +85,21 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
         this.contenedores.indexOf(contenedor) + 1
 
     $scope.all_products = [
-      {
-          id:1,
-          name: "Vigas",
-          price: 20,
-          is_work: false,
-      },
-      {
-          id:2,
-          name: "Cemento",
-          price: 30,
-          is_work: false,
-      },
-      {
-        id:3,
-        name: "Obrero",
-        price: 100,
-        is_work: true
-      },
-      {
-        id:4,
-        name: "Arquitecto",
-        price: 150,
-        is_work: true
-      }
+      { id: 'NL10X5',       name: "Vigas",          price: 20,        is_work: false },
+      { id: 'EF 1950',      name: "Cemento",        price: 30,        is_work: false },
+      { id: 'A1815-250-CW', name: "Obrero",         price: 100,       is_work: true  },
+      { id: 'A1815-250-RA', name: "Arquitecto",     price: 150,       is_work: true  },
+      { id: 'KL-250',       name: "Instalación",    price: 232.21,    is_work: true  },
+      { id: 'S-250',        name: "Ventanales ",    price: 602.52,    is_work: false },
     ]
 
     $scope.contenedores = [
       {
         id: 1124,
         name: "Ingeniería",
-        products: [
-          { id: 'NL10X5', container_id: 1124, name: "Relevamiento", price: 232.21, quantity: 1, is_work:true},
-          { id: 'EF 1950', container_id: 1124, name: "Análisis ", price: 602.52, quantity: 2, is_work:true}
+        line_items: [
+          { id: rand(), container_id: 1124, product_id: 'NL10X5', quantity: 1, },
+          { id: rand(), container_id: 1124, product_id: 'EF 1950', quantity: 2, }
         ]
       },
       {
@@ -129,18 +110,18 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
             id: 3219,
             parent_id: 5232,
             name: "Pisos",
-            products: [
-              { id: 'A1815-250-CW', container_id: 3219, name: "Instalación", price: 232.21, quantity: 1, is_work:true, is_subcontrato: true},
-              { id: 'A1815-250-RA', container_id: 3219, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+            line_items: [
+              { id: rand(), container_id: 3219, product_id: 'A1815-250-CW', quantity: 1, is_subcontrato: true },
+              { id: rand(), container_id: 3219, product_id: 'A1815-250-RA', quantity: 2, }
             ]
           },
           {
             id: 6519,
             parent_id: 5232,
             name: "Torres",
-            products: [
-              { id: 'KL-250', container_id: 6519, name: "Instalación", price: 232.21, quantity: 1, is_work:true},
-              { id: 'S-250', container_id: 6519, name: "Ventanales ", price: 602.52, quantity: 2, is_work:false}
+            line_items: [
+              { id: rand(), container_id: 6519, product_id: 'KL-250', quantity: 1, },
+              { id: rand(), container_id: 6519, product_id: 'S-250', quantity: 2, }
             ]
           }
         ],
@@ -148,11 +129,12 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     ]
     $scope.nodes = {}
 
-
     add_node = (node) ->
       $scope.nodes[node.id] = node
-      for n2 in node.children || []
-        add_node(n2)
+      for n1 in node.children || []
+        add_node(n1)
+      for n2 in node.line_items || []
+        n2.product = $scope.all_products.find (product) -> product.id == n2.product_id
       
       
     for node in $scope.contenedores
@@ -183,6 +165,10 @@ angular.module('presupuestador').factory 'focus', ($timeout) ->
     $timeout ->
       if element = angular.element(id)
         element.focus()
+
+angular.module('presupuestador').factory 'rand', ->
+  (id) ->
+    Math.round(Math.random() * 9999999)
 
 angular.module('presupuestador').directive 'focusOnShow', ($timeout) ->
   {

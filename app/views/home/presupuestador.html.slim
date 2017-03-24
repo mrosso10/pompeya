@@ -76,7 +76,7 @@
   script type="text/ng-template" id="contenedor_template"
     .container-info
       .collapse-toggler
-        button.btn.btn-xs ng-show="contenedor.children.length > 0 || contenedor.products.length > 0" ng-click="collapse(contenedor)"
+        button.btn.btn-xs ng-show="contenedor.children.length > 0 || contenedor.line_items.length > 0" ng-click="collapse(contenedor)"
           i.fa.fa-plus aria-hidden="true" ng-show="contenedor.collapse"
           i.fa.fa-minus aria-hidden="true" ng-hide="contenedor.collapse"
       .index.font-lg
@@ -86,7 +86,7 @@
           | {{contenedor.name || "Ingrese un nombre..."}}
         input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
       .actions
-        button.btn.btn-xs.btn-success ng-hide="contenedor.products.length > 0" ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
+        button.btn.btn-xs.btn-success ng-hide="contenedor.line_items.length > 0" ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
           i.fa.fa-plus aria-hidden="true"
           | &nbsp;
           i.fa.fa-folder-open-o aria-hidden="true"
@@ -103,7 +103,7 @@
     .container-details ng-hide="contenedor.collapse"
       .contenedor ng-repeat="contenedor in contenedor.children" ng-include="'contenedor_template'"
       .table-wrapper
-        table.table.table-condensed ng-show="contenedor.products.length > 0"
+        table.table.table-condensed ng-show="contenedor.line_items.length > 0"
           tr
             th Código
             th Nombre
@@ -113,29 +113,29 @@
             th Cantidad
             th Total
             th Acciones
-          tr.product-line ng-class="product.is_work ? 'work' : 'product'" ng-repeat="product in contenedor.products"
+          tr.product-line ng-class="line_item.product.is_work ? 'work' : 'product'" ng-repeat="line_item in contenedor.line_items"
             td.text
-              | {{ product.id }}
+              | {{ line_item.product.id }}
             td.text
-              | {{ product.name }}
+              | {{ line_item.product.name }}
             td.text
-              | {{ product.is_work ? 'Mano de obra' : 'Materiales' }}
+              | {{ line_item.product.is_work ? 'Mano de obra' : 'Materiales' }}
             td
               .switch
                 .onoffswitch
-                  input type="checkbox" class="onoffswitch-checkbox" id="example-{{product.id}}" ng-model="product.is_subcontrato"
-                    label class="onoffswitch-label" for="example-{{product.id}}"
+                  input type="checkbox" class="onoffswitch-checkbox" id="example-{{line_item.id}}" ng-model="line_item.is_subcontrato"
+                    label class="onoffswitch-label" for="example-{{line_item.id}}"
                       span.onoffswitch-inner
                       span.onoffswitch-switch
             td.text
-              | {{ product.price | moneda }}
+              | {{ line_item.product.price | moneda }}
             td.quantity
-              input.form-control type="number" ng-model="product.quantity"
+              input.form-control type="number" ng-model="line_item.quantity"
             td.text
-              | {{ product.price * product.quantity | moneda }}
+              | {{ line_item.product.price * line_item.quantity | moneda }}
             td
               .actions
-                button.btn.btn-xs.btn-danger ng-click="remove_product(product)" data-toggle="tooltip" title="Eliminar"
+                button.btn.btn-xs.btn-danger ng-click="remove_line_item(line_item)" data-toggle="tooltip" title="Eliminar"
                   i.fa.fa-remove aria-hidden="true"
 
 
