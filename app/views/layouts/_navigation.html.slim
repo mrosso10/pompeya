@@ -1,0 +1,39 @@
+nav.navbar-default.navbar-static-side role="navigation" 
+  .sidebar-collapse
+    ul#side-menu.nav.metismenu
+      li.nav-header
+        .dropdown.profile-element
+          a.dropdown-toggle data-toggle="dropdown" href="#" 
+            span.clear
+              span.block.m-t-xs
+                strong.font-bold Bienvenido
+        .logo-element
+          | IN+
+      li class=("#{'active' if current_page?('/presupuestador')}") 
+        = link_to "/presupuestador" do
+          i.fa.fa-desktop
+          span.nav-label Presupuestador
+    .widget.style1.navy-bg
+      .row
+        .col-xs-12.text-center
+          span Total materiales
+          h3.font-bold.counter value="total_materiales_value" to="total_materiales()" duration="400"
+            | {{ total_materiales_value | moneda }}
+    .widget.style1.navy-bg
+      .row
+        .col-xs-12.text-center
+          span Total mano de obra
+          h3.font-bold.counter value="total_mano_de_obra_value" to="total_mano_de_obra()" duration="400"
+            | {{ total_mano_de_obra_value | moneda }}
+    .widget.style1.navy-bg
+      .row
+        .col-xs-12.text-center
+          span Total subcontratos
+          h3.font-bold.counter value="total_subcontratos_value" to="total_subcontratos()" duration="400"
+            | {{ total_subcontratos_value | moneda }}
+    .widget.style1.navy-bg
+      .row
+        .col-xs-12.text-center
+          span Total presupuestado
+          h3.font-bold.counter value="total_pesupuesto_value" to="total_pesupuesto()" duration="400"
+            | {{ total_pesupuesto_value | moneda }}

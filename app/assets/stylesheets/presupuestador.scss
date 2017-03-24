@@ -25,6 +25,19 @@
 .widget h3 {
   font-size: 23px;
 }
+.mini-navbar .sidebar-collapse {
+  .widget {
+    visibility: hidden;
+    opacity: 0;
+  }
+}
+.sidebar-collapse {
+  .widget {
+    opacity: 1;
+    transition:opacity 0.5s linear;
+    transition-delay: 0.3s;
+  }
+}
 .container-info {
   background-color: #ddf1f7;
   border-top: 1px solid lightgrey;
@@ -132,7 +145,7 @@
   }
 }
 .table-wrapper {
-  padding-left: 60px;
+  padding: 0 90px;
 }
 .actions {
   padding-top: 4px;

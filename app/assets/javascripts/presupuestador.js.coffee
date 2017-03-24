@@ -85,10 +85,10 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
         this.contenedores.indexOf(contenedor) + 1
 
     $scope.all_products = [
-      { id: 'NL10X5',       name: "Vigas",          price: 20,        is_work: false },
-      { id: 'EF 1950',      name: "Cemento",        price: 30,        is_work: false },
-      { id: 'A1815-250-CW', name: "Obrero",         price: 100,       is_work: true  },
-      { id: 'A1815-250-RA', name: "Arquitecto",     price: 150,       is_work: true  },
+      { id: 'NL10X5',       name: "Vigas",          price: 124.26,        is_work: false },
+      { id: 'EF 1950',      name: "Cemento",        price: 324.12,        is_work: false },
+      { id: 'A1815-250-CW', name: "Obrero",         price: 372.50,       is_work: true  },
+      { id: 'A1815-250-RA', name: "Arquitecto",     price: 612.45,       is_work: true  },
       { id: 'KL-250',       name: "Instalación",    price: 232.21,    is_work: true  },
       { id: 'S-250',        name: "Ventanales ",    price: 602.52,    is_work: false },
     ]

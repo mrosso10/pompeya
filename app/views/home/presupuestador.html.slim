@@ -1,43 +1,5 @@
-.wrapper.wrapper-content ng-app="presupuestador" style="padding-bottom: 90px"
-  .row ng-controller="PresupuestadorCtrl"
-    .row
-      .col-lg-3
-        .widget.style1.navy-bg
-          .row
-            .col-xs-8.text-center
-              span Total materiales
-              h3.font-bold.counter value="total_materiales_value" to="total_materiales()" duration="400"
-                | {{ total_materiales_value | moneda }}
-            .col-xs-4.text-right
-              i.fa.fa-money.fa-3x
-      .col-lg-3
-        .widget.style1.navy-bg
-          .row
-            .col-xs-8.text-center
-              span Total mano de obra
-              h3.font-bold.counter value="total_mano_de_obra_value" to="total_mano_de_obra()" duration="400"
-                | {{ total_mano_de_obra_value | moneda }}
-            .col-xs-4.text-right
-              i.fa.fa-money.fa-3x
-      .col-lg-3
-        .widget.style1.navy-bg
-          .row
-            .col-xs-8.text-center
-              span Total subcontratos
-              h3.font-bold.counter value="total_subcontratos_value" to="total_subcontratos()" duration="400"
-                | {{ total_subcontratos_value | moneda }}
-            .col-xs-4.text-right
-              i.fa.fa-money.fa-3x
-      .col-lg-3
-        .widget.style1.navy-bg
-          .row
-            .col-xs-8.text-center
-              span Total presupuestado
-              h3.font-bold.counter value="total_pesupuesto_value" to="total_pesupuesto()" duration="400"
-                | {{ total_pesupuesto_value | moneda }}
-            .col-xs-4.text-right
-              i.fa.fa-money.fa-3x
-    
+.wrapper.wrapper-content style="padding-bottom: 90px"
+  .row
     .contenedor ng-repeat="contenedor in contenedores" ng-include="'contenedor_template'"
 
     button.btn.btn-xs.btn-success  ng-click="add_child()" data-toggle="tooltip" title="Agregar contenedor"  style="margin-top:1em"
@@ -82,7 +44,7 @@
       .index.font-lg
         | {{container_index(contenedor)}}. 
       .container-name.font-lg
-        span ng-hide="contenedor.editing" ng-click="editContenedor(contenedor)"
+        span ng-hide="contenedor.editing" ng-click="collapse(contenedor)"
           | {{contenedor.name || "Ingrese un nombre..."}}
         input.form-control event-focus="" focus-on-show="" ng-show="contenedor.editing" ng-model="contenedor.name" ng-blur="doneEditing(contenedor)" my-enter="doneEditing(contenedor)" autofocus="" placeholder="Ingrese el nombre..."
       .actions
@@ -96,6 +58,8 @@
           i.fa.fa-cubes aria-hidden="true"
         / button.btn.btn-xs.btn-warning ng-click="open_modal_work(contenedor)" data-toggle="tooltip" title="Agregar mano de obra"
         /   i.fa.fa-user aria-hidden="true"
+        button.btn.btn-xs.btn-warning ng-click="editContenedor(contenedor)" data-toggle="tooltip" title="Renombrar"
+          i.fa.fa-pencil aria-hidden="true"
         button.btn.btn-xs.btn-danger ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
           i.fa.fa-remove aria-hidden="true"
       .totals.font-lg
