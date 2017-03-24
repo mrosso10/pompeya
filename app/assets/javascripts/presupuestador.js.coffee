@@ -35,11 +35,8 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     
     $scope.open_modal = (contenedor) ->
       $scope.current_contenedor = contenedor
+      $scope.selected_product = null
       $('#myModal').modal('show')
-    
-    $scope.open_modal_work = (contenedor) ->
-      $scope.current_contenedor = contenedor
-      $('#myModalWork').modal('show')
     
     $scope.contenedor_total = (contenedor, filter) ->
       total = 0

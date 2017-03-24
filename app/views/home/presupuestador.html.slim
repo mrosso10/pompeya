@@ -1,4 +1,4 @@
-.wrapper.wrapper-content ng-app="presupuestador"
+.wrapper.wrapper-content ng-app="presupuestador" style="padding-bottom: 90px"
   .row ng-controller="PresupuestadorCtrl"
     .row
       .col-lg-3
@@ -40,7 +40,10 @@
     
     .contenedor ng-repeat="contenedor in contenedores" ng-include="'contenedor_template'"
 
-    button.btn.btn-w-m.btn-primary ng-click="add_child()" style="margin-top:1em" Agregar contenedor
+    button.btn.btn-xs.btn-success  ng-click="add_child()" data-toggle="tooltip" title="Agregar contenedor"  style="margin-top:1em"
+      i.fa.fa-plus aria-hidden="true"
+      | &nbsp;
+      i.fa.fa-folder-open-o aria-hidden="true"
 
     #myModal.modal.fade role="dialog" tabindex="-1" 
       .modal-dialog role="document" 
@@ -48,22 +51,24 @@
           .modal-header
             button.close aria-label="Close" data-dismiss="modal" type="button" 
               span aria-hidden="true"  &times;
-            h4#myModalLabel.modal-title Seleccione un producto
+            h4#myModalLabel.modal-title
+              | Agregar producto
           .modal-body
-            select ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: false } "
-          .modal-footer
-            button.btn.btn-default data-dismiss="modal" type="button"  Cancelar
-            button.btn.btn-primary type="button" ng-disabled="selected_product == nil" ng-click="add_product(selected_product)" Aceptar
-
-    #myModalWork.modal.fade role="dialog" tabindex="-1" 
-      .modal-dialog role="document" 
-        .modal-content
-          .modal-header
-            button.close aria-label="Close" data-dismiss="modal" type="button" 
-              span aria-hidden="true"  &times;
-            h4#myModalLabel.modal-title Seleccione mano de obra
-          .modal-body
-            select ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: true } "
+            .tabs-container
+              ul.nav.nav-tabs
+                li.active
+                  a data-toggle="tab" href="#tab-1" Material
+                li
+                  a data-toggle="tab" href="#tab-2" Mano de obra
+              .tab-content
+                #tab-1.tab-pane.active
+                  .panel-body
+                    select.form-control ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: false } "
+                      option value="" Seleccionar...
+                #tab-2.tab-pane
+                  .panel-body
+                    select.form-control ng-model="selected_product" ng-options="p.name for p in all_products | filter: { is_work: true } "
+                      option value="" Seleccionar...
           .modal-footer
             button.btn.btn-default data-dismiss="modal" type="button"  Cancelar
             button.btn.btn-primary type="button" ng-disabled="selected_product == nil" ng-click="add_product(selected_product)" Aceptar
@@ -83,10 +88,14 @@
       .actions
         button.btn.btn-xs.btn-success ng-hide="contenedor.products.length > 0" ng-click="add_child(contenedor)" data-toggle="tooltip" title="Agregar contenedor"
           i.fa.fa-plus aria-hidden="true"
-        button.btn.btn-xs.btn-info ng-click="open_modal(contenedor)" data-toggle="tooltip" title="Agregar producto"
+          | &nbsp;
+          i.fa.fa-folder-open-o aria-hidden="true"
+        button.btn.btn-xs.btn-info ng-hide="contenedor.children.length > 0" ng-click="open_modal(contenedor)" data-toggle="tooltip" title="Agregar producto"
+          i.fa.fa-plus aria-hidden="true"
+          | &nbsp;
           i.fa.fa-cubes aria-hidden="true"
-        button.btn.btn-xs.btn-warning ng-click="open_modal_work(contenedor)" data-toggle="tooltip" title="Agregar mano de obra"
-          i.fa.fa-user aria-hidden="true"
+        / button.btn.btn-xs.btn-warning ng-click="open_modal_work(contenedor)" data-toggle="tooltip" title="Agregar mano de obra"
+        /   i.fa.fa-user aria-hidden="true"
         button.btn.btn-xs.btn-danger ng-click="remove(contenedor)" data-toggle="tooltip" title="Eliminar"
           i.fa.fa-remove aria-hidden="true"
       .totals.font-lg
