@@ -1,5 +1,5 @@
 
-angular.module('presupuestador',['filtrosPresupuestador']);
+angular.module('presupuestador',['filtrosPresupuestador', 'counter']);
 
 angular.module('presupuestador').controller 'PresupuestadorCtrl',
   ($scope) ->
@@ -200,3 +200,6 @@ angular.module('presupuestador').directive 'focusOnShow', ($timeout) ->
             ), 0
 
   }
+
+
+
