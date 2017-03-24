@@ -137,3 +137,10 @@ javascript:
     $(this).animate({ width: bar_value }, { duration: 2000, easing: 'easeOutBounce' });
   });
 
+  $('.panel-collapse').on('show.bs.collapse', function () {
+    $(this).find('.progress-bar').each(function() {
+      $(this).width("0");
+      var bar_value = $(this).attr('aria-valuenow') + '%';                
+      $(this).animate({ width: bar_value }, { duration: 2000, easing: 'linear' });
+    });
+  });
