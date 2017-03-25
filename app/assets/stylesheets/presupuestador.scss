@@ -1,6 +1,6 @@
 .spinner-wrapper {
   z-index: 9999999;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -8,7 +8,7 @@
   background-color: white;
 
   .spinner-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;

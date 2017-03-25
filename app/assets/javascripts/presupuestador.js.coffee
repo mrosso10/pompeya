@@ -151,7 +151,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       pieData = {
           labels: ["Mano de Obra","Materiales","Subcontrato" ],
           datasets: [{
-              data: [ $scope.total_mano_de_obra, $scope.total_materiales , $scope.total_subcontratos],
+              data: [ $scope.total_mano_de_obra(), $scope.total_materiales() , $scope.total_subcontratos()],
               backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
           }]
       } ;
