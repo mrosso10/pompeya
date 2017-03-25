@@ -17,6 +17,7 @@
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require sparkline/jquery.sparkline.min.js
+//= require chartjs/Chart.min.js
 //= require angular
 //= require_tree .
 

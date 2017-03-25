@@ -146,6 +146,25 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
     $scope.doneEditing = (contenedor) ->
       contenedor.editing = false;
 
+    $scope.$watch "contenedores", (newValue,oldValue) ->
+      console.log $scope.total_mano_de_obra
+      pieData = {
+          labels: ["Mano de Obra","Materiales","Subcontrato" ],
+          datasets: [{
+              data: [ $scope.total_mano_de_obra, $scope.total_materiales , $scope.total_subcontratos],
+              backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+          }]
+      } ;
+
+      pieOptions = {
+          responsive: true
+      };
+
+      ctx4 = document.getElementById("doughnutChart").getContext("2d");
+      myChart = new Chart(ctx4, {type: 'doughnut', data: pieData, options:pieOptions}) ; 
+    , true
+
+
 
 angular.module('presupuestador').directive 'myEnter', ->
   (scope, element, attrs) ->
@@ -188,6 +207,3 @@ angular.module('presupuestador').directive 'focusOnShow', ($timeout) ->
             ), 0
 
   }
-
-
-
