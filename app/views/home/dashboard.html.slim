@@ -70,13 +70,13 @@
                   a data-toggle="collapse" href="#contenedor1" 
                     h5 Ingeniería - 50%
                   .progress.progress-striped
-                    .progress-bar.progress-bar-success  aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" 
+                    .progress-bar.progress-bar-success  aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar"
                       span.sr-only 50% Completo 
                   .panel-collapse.collapse#contenedor1 style="padding-left:4em"
                     h4 Materiales
                     h5 Vigas - 20%
                     .progress.progress-striped
-                      .progress-bar.progress-bar-warning  aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" 
+                      .progress-bar.progress-bar-warning  aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar"
                         span.sr-only 20% Completo 
                     h5 Cemento - 80%
                     .progress.progress-striped
@@ -138,16 +138,21 @@ javascript:
       sliceColors: ['#1ab394', '#F5F5F5']
   });
   
-  $('.progress-bar').each(function() {
-    var bar_value = $(this).attr('aria-valuenow') + '%';                
-    $(this).animate({ width: bar_value }, { duration: 2000, easing: 'easeOutBounce' });
-  });
+  setTimeout(function() {
+    $('.progress-bar').each(function() {
+      var bar_value = $(this).attr('aria-valuenow') + '%';                
+      $(this).css("width", bar_value);
+    });
+  }, 2300)
 
   $('.panel-collapse').on('show.bs.collapse', function () {
     $(this).find('.progress-bar').each(function() {
-      $(this).width("0");
-      var bar_value = $(this).attr('aria-valuenow') + '%';                
-      $(this).animate({ width: bar_value }, { duration: 2000, easing: 'linear' });
+      var elem = $(this);
+      elem.css("width", "0%");
+      setTimeout(function() {
+        var bar_value = elem.attr('aria-valuenow') + '%';                
+        elem.css("width", bar_value);
+      }, 300)
     });
   });
 
