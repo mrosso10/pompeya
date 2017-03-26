@@ -10,7 +10,24 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       angular.element('.spinner-wrapper').fadeOut()
     ,1300)
     
+    angular.element(document).ready ->
+      pieData = {
+        labels: ["Mano de Obra","Materiales","Subcontrato" ],
+        datasets: [{
+            data: [ $scope.total_mano_de_obra(), $scope.total_materiales() , $scope.total_subcontratos()],
+            backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
+        }]
+      } ;
+
+      pieOptions = {
+          responsive: true
+      };
+
+      ctx4 = document.getElementById("doughnutChart").getContext("2d");
+
+      $scope.myChart = new Chart(ctx4, {type: 'doughnut', data: pieData, options:pieOptions}) ; 
     
+
     $scope.remove_line_item = (line_item) ->
       index = this.nodes[line_item.container_id].line_items.indexOf(line_item)
       this.nodes[line_item.container_id].line_items.splice(index, 1)
@@ -147,21 +164,12 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       contenedor.editing = false;
 
     $scope.$watch "contenedores", (newValue,oldValue) ->
-      console.log $scope.total_mano_de_obra
-      pieData = {
-          labels: ["Mano de Obra","Materiales","Subcontrato" ],
-          datasets: [{
-              data: [ $scope.total_mano_de_obra(), $scope.total_materiales() , $scope.total_subcontratos()],
-              backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
-          }]
-      } ;
 
-      pieOptions = {
-          responsive: true
-      };
+      $scope.myChart.data.datasets[0].data[0] =  $scope.total_mano_de_obra();
+      $scope.myChart.data.datasets[0].data[1] =  $scope.total_materiales();
+      $scope.myChart.data.datasets[0].data[2] =  $scope.total_subcontratos();
 
-      ctx4 = document.getElementById("doughnutChart").getContext("2d");
-      myChart = new Chart(ctx4, {type: 'doughnut', data: pieData, options:pieOptions}) ; 
+      $scope.myChart.update();
     , true
 
 
@@ -207,3 +215,4 @@ angular.module('presupuestador').directive 'focusOnShow', ($timeout) ->
             ), 0
 
   }
+

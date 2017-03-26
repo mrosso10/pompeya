@@ -1,2 +1,17 @@
-grafico barras paralelas con budget/spend/planned
-grafico de torta dinamico en presupuesto con relacion mano de obra / materiales / subcontratos
+
+
+Cosas a mejorar:
+
+dashboard:
+
+El bug de las barras en el expand del dashboard (Solucion facil: sacar directamente el evento y dejar que las barras essten desplegadas siempre)
+Explicar de alguna forma que la barra naranja significa que la tarea esta en estado crítico, o sea que cerca de retrasarse.. nose si podríamos hacerlo tipo con tooltips o con algun helpbox tipo al costado
+El grafico de barras de "Presupuesto de tarea" podría tener un poco mas de onda, no se como.
+  
+presupuesto:
+el tooltip de "agregar contenedor" nose porque despues de mover la pantalla se tapa por la sidebar
+
+Logre que se redibuje piola el pie graph.
+lo unico choto es que lo inicializo en "angular.element(document).ready ->"
+Y nose si esto pueda joder en algo a futuro, aunque no creo la verdad,
+sino podemos usarlo cono un jquery ready normal y a la mierda
