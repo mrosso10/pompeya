@@ -14,13 +14,20 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
       pieData = {
         labels: ["Mano de Obra","Materiales","Subcontrato" ],
         datasets: [{
-            data: [ $scope.total_mano_de_obra(), $scope.total_materiales() , $scope.total_subcontratos()],
+            data: [
+              $scope.total_mano_de_obra().toFixed(2),
+              $scope.total_materiales().toFixed(2),
+              $scope.total_subcontratos().toFixed(2)
+            ],
             backgroundColor: ["#a3e1d4","#dedede","#b5b8cf"]
         }]
       } ;
 
       pieOptions = {
-          responsive: true
+        responsive: true,
+        legend: {
+          display: false
+        }
       };
 
       ctx4 = document.getElementById("doughnutChart").getContext("2d");
@@ -165,9 +172,9 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
 
     $scope.$watch "contenedores", (newValue,oldValue) ->
 
-      $scope.myChart.data.datasets[0].data[0] =  $scope.total_mano_de_obra();
-      $scope.myChart.data.datasets[0].data[1] =  $scope.total_materiales();
-      $scope.myChart.data.datasets[0].data[2] =  $scope.total_subcontratos();
+      $scope.myChart.data.datasets[0].data[0] =  $scope.total_mano_de_obra().toFixed(2);
+      $scope.myChart.data.datasets[0].data[1] =  $scope.total_materiales().toFixed(2);
+      $scope.myChart.data.datasets[0].data[2] =  $scope.total_subcontratos().toFixed(2);
 
       $scope.myChart.update();
     , true

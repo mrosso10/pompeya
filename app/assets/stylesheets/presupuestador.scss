@@ -26,17 +26,20 @@
   font-size: 23px;
 }
 .mini-navbar .sidebar-collapse {
-  .widget {
+  .widget, canvas {
     visibility: hidden;
     opacity: 0;
   }
 }
 .sidebar-collapse {
-  .widget {
-    color: #eaeaea;
+  .widget, canvas {
     opacity: 1;
     transition:opacity 0.5s linear;
     transition-delay: 0.3s;
+  }
+  .widget {
+    padding: 0 21px;
+    color: #eaeaea;
   }
 }
 .container-info {
