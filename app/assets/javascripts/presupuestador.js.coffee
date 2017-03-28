@@ -8,7 +8,7 @@ angular.module('presupuestador').controller 'PresupuestadorCtrl',
 
     $timeout( ->
       angular.element('.spinner-wrapper').fadeOut()
-    ,1300)
+    ,900)
     
     angular.element(document).ready ->
       pieData = {

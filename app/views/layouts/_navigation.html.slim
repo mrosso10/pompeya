@@ -9,36 +9,40 @@ nav.navbar-default.navbar-static-side role="navigation"
                 strong.font-bold Bienvenido
         .logo-element
           | IN+
-      li class=("#{'active' if current_page?('/presupuestador')}") 
+      li class=("#{'active' if current_page?('/presupuestador') || current_page?('/')}") 
         = link_to "/presupuestador" do
-          i.fa.fa-desktop
+          i.fa.fa-dollar
           span.nav-label Presupuestador
-        .widget.style1
-          .row
-            .col-xs-12.text-center
-              span Total materiales
-              h3.font-bold.counter value="total_materiales_value" to="total_materiales()" duration="400"
-                | {{ total_materiales_value | moneda }}
-        .widget.style1
-          .row
-            .col-xs-12.text-center
-              span Total mano de obra
-              h3.font-bold.counter value="total_mano_de_obra_value" to="total_mano_de_obra()" duration="400"
-                | {{ total_mano_de_obra_value | moneda }}
-        .widget.style1
-          .row
-            .col-xs-12.text-center
-              span Total subcontratos
-              h3.font-bold.counter value="total_subcontratos_value" to="total_subcontratos()" duration="400"
-                | {{ total_subcontratos_value | moneda }}
-        .widget.style1
-          .row
-            .col-xs-12.text-center
-              span Total presupuestado
-              h3.font-bold.counter value="total_pesupuesto_value" to="total_pesupuesto()" duration="400"
-                | {{ total_pesupuesto_value | moneda }}
-        canvas#doughnutChart height="140"
       li class=("#{'active' if current_page?('/dashboard')}") 
         = link_to "/dashboard" do
-          i.fa.fa-desktop
+          i.fa.fa-line-chart
           span.nav-label Dashboard
+      li class=("#{'active' if current_page?('/seguimiento')}") 
+        = link_to "/seguimiento" do
+          i.fa.fa-eye
+          span.nav-label Seguimiento
+    .widget.style1
+      .row
+        .col-xs-12.text-center
+          span Total materiales
+          h3.font-bold.counter value="total_materiales_value" to="total_materiales()" duration="400"
+            | {{ total_materiales_value | moneda }}
+    .widget.style1
+      .row
+        .col-xs-12.text-center
+          span Total mano de obra
+          h3.font-bold.counter value="total_mano_de_obra_value" to="total_mano_de_obra()" duration="400"
+            | {{ total_mano_de_obra_value | moneda }}
+    .widget.style1
+      .row
+        .col-xs-12.text-center
+          span Total subcontratos
+          h3.font-bold.counter value="total_subcontratos_value" to="total_subcontratos()" duration="400"
+            | {{ total_subcontratos_value | moneda }}
+    .widget.style1
+      .row
+        .col-xs-12.text-center
+          span Total presupuestado
+          h3.font-bold.counter value="total_pesupuesto_value" to="total_pesupuesto()" duration="400"
+            | {{ total_pesupuesto_value | moneda }}
+    canvas#doughnutChart height="140"

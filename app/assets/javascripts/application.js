@@ -19,6 +19,7 @@
 //= require sparkline/jquery.sparkline.min.js
 //= require chartjs/Chart.min.js
 //= require angular
+//= require blueimp/jquery.blueimp-gallery.min.js
 //= require_tree .
 
 receta = angular.module('receta',[]);

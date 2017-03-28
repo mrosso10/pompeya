@@ -1,0 +1,49 @@
+.wrapper.wrapper-content.animated.fadeInRight style="height: 900px"
+  .row
+    .col-lg-12
+      h1 Seguimiento por imágenes
+      .ibox
+        .ibox-title
+          h2
+            | 10-01-2017
+            .pull-right
+              button.btn.btn-primary
+                i.fa.fa-plus
+                | &nbsp;Agregar imagen
+        .ibox-content
+          .lightBoxGallery
+            - (1..5).each do |i|
+              a href="assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg" title="10-01-2017" data-gallery=""
+                img src="assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg"
+
+            #blueimp-gallery.blueimp-gallery
+              .slides
+              h3.title
+              a.prev ‹
+              a.next ›
+              a.close ×
+              a.play-pause
+              ol.indicator
+
+      .ibox
+        .ibox-title
+          h2
+            | 13-02-2017
+            .pull-right
+              button.btn.btn-primary
+                i.fa.fa-plus
+                | &nbsp;Agregar imagen
+        .ibox-content
+          .lightBoxGallery
+            - (6..11).each do |i|
+              a href="assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg" title="13-02-2017" data-gallery=""
+                img src="assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg"
+
+            #blueimp-gallery.blueimp-gallery
+              .slides
+              h3.title
+              a.prev ‹
+              a.next ›
+              a.close ×
+              a.play-pause
+              ol.indicator
