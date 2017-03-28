@@ -13,8 +13,8 @@
         .ibox-content
           .lightBoxGallery
             - (1..5).each do |i|
-              a href="assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg" title="10-01-2017" data-gallery=""
-                img src="assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg"
+              a href="#{asset_path("assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg")}" title="10-01-2017" data-gallery=""
+                img src="#{asset_path("assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg")}"
 
             #blueimp-gallery.blueimp-gallery
               .slides
@@ -36,8 +36,8 @@
         .ibox-content
           .lightBoxGallery
             - (6..11).each do |i|
-              a href="assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg" title="13-02-2017" data-gallery=""
-                img src="assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg"
+              a href="#{asset_path("assets/seguimiento/big/image_#{i.to_s.rjust(2, '0')}.jpg")}" title="13-02-2017" data-gallery=""
+                img src="#{asset_path("assets/seguimiento/small/image_#{i.to_s.rjust(2, '0')}.jpg")}"
 
             #blueimp-gallery.blueimp-gallery
               .slides
